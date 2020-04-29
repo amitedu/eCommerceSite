@@ -1,5 +1,9 @@
 ﻿<?php include 'inc/header.php';?>
 <?php include 'inc/sidebar.php';?>
+<?php 
+  require_once '../classes/Product.php'; 
+  $pr = new Product();
+?>
 <div class="grid_10">
     <div class="box round first grid">
         <h2>Add New Product</h2>
@@ -9,53 +13,67 @@
                
                 <tr>
                     <td>
-                        <label>Name</label>
+                      <label>Name</label>
                     </td>
                     <td>
-                        <input type="text" placeholder="Enter Product Name..." class="medium" />
+                      <input type="text" name="productName"placeholder="Enter Product Name..." class="medium" />
                     </td>
                 </tr>
-				<tr>
+                <tr>
                     <td>
-                        <label>Category</label>
+                        <label>Ca8tegory</label>
                     </td>
                     <td>
-                        <select id="select" name="select">
+                        <select id="select" name="catId">
                             <option>Select Category</option>
-                            <option value="1">Category One</option>
-                            <option value="2">Category Two</option>
-                            <option value="3">Category Three</option>
+                            <?php
+                              $result = $pr->categoryShow();
+                              if($result != false) {
+                                while($category = $result->fetch_assoc()) {
+                            ?>
+                              <option value="<?=$category['catId'];?>"><?=$category['catName']?></option>
+                            <?php
+                                }
+                              }
+                            ?>
                         </select>
                     </td>
                 </tr>
-				<tr>
+                <tr>
                     <td>
                         <label>Brand</label>
                     </td>
                     <td>
-                        <select id="select" name="select">
+                        <select id="select" name="brandId">
                             <option>Select Brand</option>
-                            <option value="1">Brand One</option>
-                            <option value="2">Brand Two</option>
-                            <option value="3">Brand Three</option>
+                            <?php
+                              $resultBrand = $pr->brandShow();
+                              if($resultBrand != false) {
+                                while($brand = $resultBrand->fetch_assoc()) {
+                            ?>
+                                <option value="<?=$brand['brandId'];?>"><?= $brand['brandName']; ?></option>
+                            <?php
+                                }
+                              }
+                            ?>
                         </select>
                     </td>
                 </tr>
-				
-				 <tr>
+        
+                <tr>
                     <td style="vertical-align: top; padding-top: 9px;">
                         <label>Description</label>
                     </td>
                     <td>
-                        <textarea class="tinymce"></textarea>
+                        <textarea class="tinymce" name="body"></textarea>
                     </td>
                 </tr>
-				<tr>
+        <tr>
                     <td>
                         <label>Price</label>
                     </td>
                     <td>
-                        <input type="text" placeholder="Enter Price..." class="medium" />
+                        <input type="text" name="price" placeholder="Enter Price..." class="medium" />
                     </td>
                 </tr>
             
@@ -64,24 +82,24 @@
                         <label>Upload Image</label>
                     </td>
                     <td>
-                        <input type="file" />
+                        <input type="file" name="image" />
                     </td>
                 </tr>
-				
-				<tr>
+        
+        <tr>
                     <td>
                         <label>Product Type</label>
                     </td>
                     <td>
-                        <select id="select" name="select">
+                        <select id="select" name="type">
                             <option>Select Type</option>
                             <option value="1">Featured</option>
-                            <option value="2">Non-Featured</option>
+                            <option value="2">General</option>
                         </select>
                     </td>
                 </tr>
 
-				<tr>
+        <tr>
                     <td></td>
                     <td>
                         <input type="submit" name="submit" Value="Save" />

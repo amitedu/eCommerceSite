@@ -1,13 +1,21 @@
-﻿<?php require_once 'inc/header.php';?>
+<?php require_once 'inc/header.php';?>
 <?php require_once 'inc/sidebar.php';?>
-<?php require_once '../classes/Category.php';?>
+<?php 
+  require_once '../classes/Brand.php';
+  $brnd = new Brand();
+?>
         <div class="grid_10">
           <div class="box round first grid">
-            <h2>Add New Category</h2>
+            <h2>Add New Brand</h2>
             <?php
-              $ca = new Category();
+              if(isset($_GET['brandId'])) {
+                $resultShow = $brnd->brandById($_GET['brandId']);
+                $brand = $resultShow->fetch_assoc();
+              }
+            ?>
+            <?php
               if($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $result = $ca->categoryAdd($_POST['catName']);
+                $result = $brnd->brandUpdate($_GET['brandId'], $_POST['catName']);
               }
             ?>
               <div class="block copyblock"> 
@@ -20,7 +28,7 @@
                     <table class="form">					
                       <tr>
                         <td>
-                          <input type="text" name="catName" placeholder="Enter Category Name..." class="medium" />
+                          <input type="text" name="catName" value="<?=$brand['brandName']?>" class="medium" />
                         </td>
                       </tr>
                       <tr> 

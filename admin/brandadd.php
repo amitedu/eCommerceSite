@@ -1,13 +1,13 @@
-﻿<?php require_once 'inc/header.php';?>
+<?php require_once 'inc/header.php';?>
 <?php require_once 'inc/sidebar.php';?>
-<?php require_once '../classes/Category.php';?>
+<?php require_once '../classes/Brand.php';?>
         <div class="grid_10">
           <div class="box round first grid">
-            <h2>Add New Category</h2>
+            <h2>Add New Brand</h2>
             <?php
-              $ca = new Category();
+              $brnd = new Brand();
               if($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $result = $ca->categoryAdd($_POST['catName']);
+                $result = $brnd->brandAdd($_POST['catName']);
               }
             ?>
               <div class="block copyblock"> 
@@ -20,7 +20,7 @@
                     <table class="form">					
                       <tr>
                         <td>
-                          <input type="text" name="catName" placeholder="Enter Category Name..." class="medium" />
+                          <input type="text" name="catName" placeholder="Enter Brand Name..." class="medium" />
                         </td>
                       </tr>
                       <tr> 
