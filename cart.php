@@ -12,6 +12,11 @@
 		$ct->deleteCartProduct($_GET['deleteCartProductId']);
 	}
 ?>
+<?php
+	if(!isset($_GET['id'])) {
+		echo "<meta http-equiv='refresh' content='0;URL=?id=live' />";
+	}
+?>
  <div class="main">
     <div class="content">
     	<div class="cartoption">		
