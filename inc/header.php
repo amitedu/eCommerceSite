@@ -1,3 +1,27 @@
+<?php
+	$filename = realpath(dirname(__FILE__));
+	require $filename . '/../lib/Session.php';
+	Session::init();
+	include_once $filename . '/../lib/Database.php';
+	include_once $filename . '/../helpers/Helper.php';
+
+	spl_autoload_register(function($class) {
+		require_once "classes/" . $class . ".php";
+	});
+	
+	$db = new Database();
+	$fm = new Helper();
+	$pr = new Product();
+	$ct = new Cart();
+
+?>
+<?php
+  header("Cache-Control: no-cache, must-revalidate");
+  header("Pragma: no-cache"); 
+  header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); 
+  header("Cache-Control: max-age=2592000");
+?>
+
 <!DOCTYPE HTML>
 <head>
 <title>Store Website</title>
@@ -36,7 +60,7 @@
 					<div class="cart">
 						<a href="#" title="View my shopping cart" rel="nofollow">
 								<span class="cart_title">Cart</span>
-								<span class="no_product">(empty)</span>
+								<span class="no_product">(<?= Session::get("cartTotalItems"); ?>)</span>
 							</a>
 						</div>
 			      </div>

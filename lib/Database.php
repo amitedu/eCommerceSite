@@ -1,5 +1,6 @@
 <?php
-  require '../config/config.php';
+  $filepath = realpath(dirname(__FILE__));
+  require $filepath . '/../config/config.php';
 
   class Database {
     

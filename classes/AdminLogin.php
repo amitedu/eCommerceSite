@@ -1,8 +1,9 @@
 <?php
-  require_once '../lib/Session.php';
+  $filename = realpath(dirname(__FILE__));
+  require_once $filename . '/../lib/Session.php';
   Session::checkLogin();
-  require_once '../lib/Database.php';
-  require_once '../helpers/Helper.php';
+  require_once $filename . '/../lib/Database.php';
+  require_once $filename . '/../helpers/Helper.php';
 ?>
 
 <?php
