@@ -162,7 +162,7 @@
     }
 
     public function getAllFeaturedProduct() {
-      $query = "SELECT * FROM tbl_products WHERE type='0' ORDER BY productId DESC";
+      $query = "SELECT * FROM tbl_products WHERE type='0' ORDER BY productId LIMIT 4";
       return $this->db->select($query);
     }
 
@@ -171,6 +171,16 @@
       return $this->db->select($query);
     }
 
+    public function getAllProductsByCategory() {
+      $query = "SELECT * FROM tbl_category";
+      return $this->db->select($query);
+    }
+
+    public function getProductsByCategory($catId) {
+      $query = "SELECT * FROM tbl_products WHERE catId = '$catId'";
+      return $this->db->select($query);
+    }
+    
     public function productPreview($productId) {
       $query = "SELECT tbl_products.*, tbl_category.catName, tbl_brands.brandName
       FROM tbl_products
@@ -179,6 +189,26 @@
       inner join tbl_brands
       on tbl_products.brandId = tbl_brands.brandId
       WHERE productId = '$productId'";
+      return $this->db->select($query);
+    }
+
+    public function getLatestIphone() {
+      $query = "SELECT * FROM tbl_productS WHERE brandId = '6' ORDER BY productId DESC LIMIT 1";
+      return $this->db->select($query);
+    }
+
+    public function getLatestSamsung() {
+      $query = "SELECT * FROM tbl_productS WHERE brandId = '7' ORDER BY productId DESC LIMIT 1";
+      return $this->db->select($query);
+    }
+
+    public function getLatestAcer() {
+      $query = "SELECT * FROM tbl_productS WHERE brandId = '8' ORDER BY productId DESC LIMIT 1";
+      return $this->db->select($query);
+    }
+
+    public function getLatestCannon() {
+      $query = "SELECT * FROM tbl_productS WHERE brandId = '9' ORDER BY productId DESC LIMIT 1";
       return $this->db->select($query);
     }
 

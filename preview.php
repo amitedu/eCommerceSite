@@ -53,7 +53,17 @@
 				<div class="rightsidebar span_3_of_1">
 					<h2>CATEGORIES</h2>
 					<ul>
-				      <li><a href="productbycat.php">Mobile Phones</a></li>
+						<?php
+							$productCategory = $pr->getAllProductsByCategory();
+							if($productCategory != false) {
+								while($category = $productCategory->fetch_assoc()) {
+						?>
+									<li><a href="productbycat.php?productCategoryId=<?= $category['catId']; ?>"><?= $category['catName']; ?></a></li>
+						<?php
+								}
+							}
+						?>
+<!-- 				      
 				      <li><a href="productbycat.php">Desktop</a></li>
 				      <li><a href="productbycat.php">Laptop</a></li>
 				      <li><a href="productbycat.php">Accessories</a></li>
@@ -64,7 +74,7 @@
 					   <li><a href="productbycat.php">Clothing</a></li>
 					   <li><a href="productbycat.php">Home Decor & Kitchen</a></li>
 					   <li><a href="productbycat.php">Beauty & Healthcare</a></li>
-					   <li><a href="productbycat.php">Toys, Kids & Babies</a></li>
+					   <li><a href="productbycat.php">Toys, Kids & Babies</a></li> -->
     				</ul>
     	
  				</div>

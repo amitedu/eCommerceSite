@@ -60,7 +60,7 @@
 					<div class="cart">
 						<a href="#" title="View my shopping cart" rel="nofollow">
 								<span class="cart_title">Cart</span>
-								<span class="no_product">(<?= Session::get("cartTotalItems"); ?>)</span>
+								<span class="no_product">(<?= Session::get("cartTotalItems") ? Session::get("cartTotalItems") : 'Empty'; ?>)</span>
 							</a>
 						</div>
 			      </div>
