@@ -9,10 +9,11 @@
 		require_once "classes/" . $class . ".php";
 	});
 	
-	$db = new Database();
-	$fm = new Helper();
-	$pr = new Product();
-	$ct = new Cart();
+	$db  = new Database();
+	$fm  = new Helper();
+	$pr  = new Product();
+	$ct  = new Cart();
+	$cmr = new Customer();
 
 ?>
 <?php
@@ -64,7 +65,19 @@
 							</a>
 						</div>
 			      </div>
-		   <div class="login"><a href="login.php">Login</a></div>
+				<div class="login">
+					<?php 
+						if(Session::get("customerLogin")) {
+					?>
+							<a href="#">Logout</a>
+					<?php
+						} else {
+					?>
+							<a href="login.php">Login</a>
+					<?php
+						}
+					?>
+				</div>
 		 <div class="clear"></div>
 	 </div>
 	 <div class="clear"></div>
